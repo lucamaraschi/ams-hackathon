@@ -1,0 +1,1 @@
+AmsHackathon.ApplicationAdapter = DS.FixtureAdapter;
