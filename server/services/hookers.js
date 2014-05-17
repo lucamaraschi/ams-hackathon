@@ -30,15 +30,15 @@ module.exports = function(options) {
                     }
                 }
             },
-            '/api/hookers?now=:now': {
+            '/api/hookers': {
               GET: {
                 handler: 'hooker.getAllAvailableNow',
                 transform: function(req) {
-                  return new Date(req.params.now);
+                  return new Date();
                 },
                 error: function(err, res) {
                   virgilio.log.trace('Hookers retrieve failed with error: %s',
-                          error.message);
+                          err.message);
                   res.send(404, {
                       "error": {
                         "message": "No hooker found...not your lucky day!"
@@ -65,18 +65,20 @@ module.exports = function(options) {
     }
 
     function getAllAvailableNow(now) {
-      return Hooker.find({
-        'shifts.from': { $gt: now },
-        'shifts.to': { $lt: now }
+      console.log(now);
+      return Hooker.findAsync({
+        'shifts.from': { $lte: now },
+        'shifts.to': { $gte: now }
       }).then(function(girls) {
+        console.log(girls);
         return girls;
       });
     }
 
     function isGirlAvailableNow(girlId, now) {
-      return Hooker.find({
-        'shifts.from': { $gt: now },
-        'shifts.to': { $lt: now },
+      return Hooker.findAsync({
+        'shifts.from': { $lt: now },
+        'shifts.to': { $gt: now },
         'id': girlId
       }).then(function(girls) {
         return girls;
