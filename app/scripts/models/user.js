@@ -1,3 +1,9 @@
 AmsHackathon.User = Ember.Object.extend({
-  loggedIn: false
+  id: null,
+  loggedIn: true,
+  username: null,
+  password: null,
+  age: null,
+  sex: null,
+  interestedIn: null
 });

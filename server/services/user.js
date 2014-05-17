@@ -22,7 +22,7 @@ module.exports = function(options) {
                         var body = req.body;
   	                    var username = body.username;
   	                    var password = body.password;
-  	                    if(!password || !username){
+  	                    if(!password || !username) {
   		                    throw new Error('Empty username or passsword');
   	                    }
                         return [username, password];
@@ -47,6 +47,8 @@ module.exports = function(options) {
     function login(username, password) {
       return User.findOneAsync({ username: username, password: password }).then(function(err, user) {
         if (err) {
+          console.log('err');
+          console.log(err);
           return err;
         }
 

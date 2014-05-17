@@ -6,7 +6,7 @@ var ApiManager = Ember.Object.extend({
     var self = this;
     self._request({
       url: self.baseUrl + 'users?login',
-      method: 'POST',
+      type: 'POST',
       data: {
         'username': data.username,
         'password': data.password
@@ -17,9 +17,12 @@ var ApiManager = Ember.Object.extend({
   _request: function(request, successCallback, errorCallback) {
     $.ajax({
       url: request.url,
-      method: request.method,
+      type: request.type,
       contentType: 'application/json',
-      data: JSON.stringify(request.data)
+      data: JSON.stringify(request.data),
+      success: function(data, textStatus, jqxhr) {
+        console.log("Success", data);
+      }
     })
     .done(function(data, textStatus, jqXHR) {
       console.log("[ApiManager] - Request Success: " + request.url);
