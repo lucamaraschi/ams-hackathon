@@ -332,8 +332,16 @@ module.exports = function (grunt) {
                 src: '<%= yeoman.app %>/scripts/app.js',
                 dest: '.tmp/scripts/combined-scripts.js'
             }
+        },
+        nginx: {
+            options: {
+                config: './.nginx.conf',
+                prefix: '.'
+            }
         }
     });
+
+    grunt.loadNpmTasks('grunt-nginx');
 
     grunt.registerTask('server', function (target) {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
