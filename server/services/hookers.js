@@ -29,6 +29,23 @@ module.exports = function(options) {
                         });
                     }
                 }
+            },
+            '/api/hookers?now=:now': {
+              GET: {
+                handler: 'hooker.getAllAvailableNow',
+                transform: function(req) {
+                  return new Date(req.params.now);
+                },
+                error: function(err, res) {
+                  virgilio.log.trace('Hookers retrieve failed with error: %s',
+                          error.message);
+                  res.send(404, {
+                      "error": {
+                        "message": "No hooker found...not your lucky day!"
+                      }
+                  });
+                }
+              }
             }
         });
 
