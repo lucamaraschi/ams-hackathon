@@ -1,0 +1,25 @@
+{
+  "name": "ams-hackathon",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lucamaraschi/ams-hackathon.git"
+  },
+  "author": "Luca Maraschi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucamaraschi/ams-hackathon/issues"
+  },
+  "homepage": "https://github.com/lucamaraschi/ams-hackathon",
+  "dependencies": {
+    "virgilio": "~0.1.0",
+    "virgilio-http": "~0.1.0",
+    "uuid-v4": "~0.1.0",
+    "mongoose": "~3.8.9"
+  }
+}
